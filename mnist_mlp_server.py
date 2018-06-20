@@ -17,13 +17,15 @@ def convertImage(imgData1):
 		output.write(base64.b64decode(imgstr))
 
 def noiseImage(img):
-    seed = np.random.rand(28,28)
+    # img = img * 255
+    seed = np.random.uniform(-100,100,[28,28])
     noiseA = np.eye(28) * seed
     noiseB = np.eye(28) * (1/seed)
     print(noiseA)
     print(noiseB)
     print(np.matmul(noiseA, noiseB))
     noised = np.matmul(np.matmul(noiseA, img), noiseB)
+    noised = (noised + 100)/200 * 255
     # noised = np.invert(noised)
     noised = imresize(noised, (280,280))
     imsave('static/noise.png', noised)
