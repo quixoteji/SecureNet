@@ -78,6 +78,10 @@ def mlp_local(num_samples):
     return cost
 
 if __name__ == '__main__':
-    y, out, cost = mlp_local(10000)
+    cost = []
+    for i in range(1000, 3000, 500):
+        cost_time = mlp_local(i)
+        cost.append(cost_time)
+    print(cost)
 
         
